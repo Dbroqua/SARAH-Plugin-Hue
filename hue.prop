@@ -1,0 +1,11 @@
+{
+  "modules": { 
+    "hue": {
+      "description": "Module pour Lampes Philips HUE",
+      "version": "1.0",
+      "ip": "127.0.0.1",
+      "username": "SarahHUEPlugin",
+      "alllights": "1,2,3"
+    }
+  }
+}

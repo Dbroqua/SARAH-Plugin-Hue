@@ -1,0 +1,18 @@
+<% stylesheet('assets/'+key+'/portlet.css') %>
+<% 
+  var hue = SARAH.ConfigManager.getModule(key); 
+  
+  if (!hue.isValidUser()){
+%>
+<div class="action">
+  <span>Appuyer sur le pont puis <%= hue.isValidUser() %></span>
+  <a href="/sarah/hue?user=true" class='btn ajax'>Créer un utilisateur</a>
+</div>
+<% } else { %>
+<form action="sarah/hue" method="GET" class="ajax">
+  <label class="radio inline"><input type="radio"  name="on" value="true"  checked="checked"/> on</label>
+  <label class="radio inline pull-right"><input type="radio"  name="on" value="false"  /> off</label>
+  <input type="text"   name="rgb"    value="FF0000"/>
+  <input type="hidden" name="lights" value="true"  />
+</form>
+<% } %>

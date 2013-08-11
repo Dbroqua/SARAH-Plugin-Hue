@@ -1,0 +1,33 @@
+
+.plugin-gridster.hue .front {
+  background: #333 url('images/logo.png') center 20px;
+  background-size:   74px 120px;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+}
+.plugin-gridster.hue FORM {
+  margin-top: 85px;
+}
+.plugin-gridster.hue FORM INPUT[type=radio] {
+  
+}
+.plugin-gridster.hue FORM INPUT[type=text] {
+  width: 90%;
+  margin: 0px auto;
+}
+
+.plugin-gridster.hue .front .action {
+  text-align: center;
+  margin-top: 60px;
+  background: #333;
+  opacity: 0.70;
+}
+
+.plugin-gridster.hue .front .action:hover{
+  opacity: 1;
+}
+
+.plugin-gridster.hue .back {
+  background: #333;
+  color: #FFFFFF;
+}

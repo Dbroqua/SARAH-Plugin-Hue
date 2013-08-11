@@ -1,0 +1,54 @@
+<div id="hue">
+  
+  <div class="row-fluid">
+    <div class="span8">
+      
+      <p>
+        Le plugin Philips HUE, expose l'API REST des lampes connectées au framework SARAH.
+        Un grand merci à Nicolas Savoini pour son plugin et toutes ses expérimentations. 
+      </p>
+      
+      <h4>Getting Started</h4>
+      
+      <p>
+        Indiquer dans les propriétés l'<code>ip</code> du bridge philips (mettre une ip fixe).
+        Le champs <code>alllights</code> représente la liste des toutes les lampes séparée par des vigules. 
+      </p>
+      
+      <p>
+        Lors de la première utilisation il est necessaire de créer un utilisateur.
+        Appuyer sur le bridge, cliquer sur le bouton de la portlet puis raffraichir la fenêtre.
+      </p>
+      
+      <h4>Principes</h4>
+      
+      <p>
+        L'API REST propose <a href="http://developers.meethue.com/1_lightsapi.html">de nombreuses options</a> de paramétrage des lampes. 
+        L'idée est de ne rien imposer dans le JS pour tout véhiculer depuis le XML.
+      </p>
+      
+<pre>&lt;item&gt;
+  we are under attack 
+  &lt;tag&gt;
+    out.action.lights="true"; 
+    out.action.rgb="FF0000"; 
+    out.action.alert="lselect";
+  &lt;/tag&gt;
+&lt;/item&gt;
+</pre>
+      
+      <p>
+        Pour simplifier le code le plugin gère les couleurs hexadecimales qui sont transformées en HSL et XY.
+      </p>
+      
+      <p>
+        Le paramètre <code>lights</code> indique de travailler sur toutes les lampes. 
+        Sinon il faut préciser <code>light="1"</code> ou <code>group="1"</code>.
+        Il est aussi possible de préciser <code>out.action.rgb1="EEDDCC";</code>.
+      </p>
+      
+    </div>
+    <div class="span4"><img src="/assets/hue/images/logo-hue.png" align="right" width="300"/></div>
+  </div> 
+  
+</div>
