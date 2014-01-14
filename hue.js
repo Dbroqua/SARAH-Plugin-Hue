@@ -20,11 +20,12 @@ exports.action = function(data, callback, config, SARAH){
   if (data.on === "false") data.on = false;
   
   // Convert RGB to HSL + XY
-  rgbToHSLAndXY(data.rgb, data);
+  hexToHSLAndXY(data.rgb, data);
+  
   
   // Handle groups
   if (data.group){
-    setGroup(data.light, data, config);
+    setGroup(data.group, data, config);
     return callback({});
   }
   
@@ -37,7 +38,7 @@ exports.action = function(data, callback, config, SARAH){
   // Handle all lights specified in properties
   if (config.alllights){
     config.alllights.split(',').forEach(function(light){
-      if (data.lights || rgbToHSLAndXY(data['rgb'+light], data)){
+      if (data.lights || hexToHSLAndXY(data['rgb'+light], data)){
         setLight(light, data, config);
       }
     });
@@ -142,24 +143,35 @@ var req = function(path, data, config, callback){
 // ------------------------------------------
 
 var cc  = require('./lib/colorconverter').cc;
-var rgbToHSLAndXY = function(hex, data){
+var hexToHSLAndXY = function(hex, data){
   if (!hex) return false;
-  
-  // Algorithm 1 : RGB to XY + BRI 
-  var xyb   = cc.hexStringToXyBri(hex);
-  var color = cc.xyBriForModel(xyb, 'LCT001');
-  // data.bri  = Math.round(color.bri * 255);
-  data.xy   = [color.x, color.y];
+  return rgbToHSLAndXY(cc.hexStringToRgb(hex), data); 
+}
+var rgbToHSLAndXY = function(rgb, data){
 
-  // Algorithm 2 : RGB to HSL 
-  var hsl = rgbToHsv(parseInt(hex.substr(0,2), 16),
-                     parseInt(hex.substr(2,2), 16),
-                     parseInt(hex.substr(4,2), 16));
-  
-  // data.hue  = Math.round(hsl[0] * 65535);
-  data.bri  = Math.round(hsl[2] * 255);
-  data.sat  = Math.round(hsl[1] * 255);
-  
+  if (!rgb) return false;
+  try {
+    var bri = data.bri; // backup
+    
+    // Algorithm 1 : RGB to XY + BRI 
+    var xyb   = cc.rgbToXyBri(rgb);
+    var color = cc.xyBriForModel(xyb, 'LCT001');
+    data.bri  = Math.round(color.bri * 255);
+    data.xy   = [color.x, color.y];
+    
+    // Algorithm 2 : RGB to HSL 
+    var hsl = rgbToHsv(rgb.r, rgb.g, rgb.b);
+    //data.hue  = Math.round(hsl[0] * 65535);
+    //data.bri  = Math.round(hsl[2] * 255);
+    //data.sat  = Math.round(hsl[1] * 255);
+    
+    // My Algorithm
+    data.bri  = Math.max(Math.max(rgb.r*255, rgb.g*255), rgb.b*255);
+
+    // Set back brightness
+    if (bri) data.bri = bri;
+    
+  } catch(ex){ console.log(ex); }
   return true;
 }
 
