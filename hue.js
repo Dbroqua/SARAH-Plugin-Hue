@@ -31,7 +31,9 @@ exports.action = function(data, callback, config, SARAH){
   
   // Handle lights
   if (data.light){
-    setLight(data.light, data, config);
+   data.light.split(',').forEach(function(light){
+    setLight( light, data, config); 
+   });
     return callback({});
   }
   
@@ -61,6 +63,7 @@ exports.isValidUser = function(){
 // ------------------------------------------
 
 var setLight = function(id, body, config, callback){
+  body.light = id; // Hack pour le cas ou l'on tente d'allumer plusieurs lampes en même temps
   put('lights/'+id+'/state', body, config, callback);
 }
 
