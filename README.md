@@ -39,5 +39,5 @@ This plugin is a scraper for Allocine.
 
 ## Quick Start
 
-Donwload the plugin from SARAH's AppStore and follow online plugin's documentation  
+Donwload the plugin from github and follow online plugin's documentation  
    
