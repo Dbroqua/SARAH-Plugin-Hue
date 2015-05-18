@@ -41,3 +41,7 @@ This plugin is a scraper for Allocine.
 
 Donwload the plugin from github and follow online plugin's documentation  
    
+
+## References
+
+Philips API : http://www.developers.meethue.com/
