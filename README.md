@@ -44,4 +44,5 @@ Donwload the plugin from github and follow online plugin's documentation
 
 ## References
 
+Sarah plugin documentation : http://jpencausse.github.io/SARAH-Documentation/?page=plugin_dev_v3#-plugin-xml
 Philips API : http://www.developers.meethue.com/
