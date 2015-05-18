@@ -69,6 +69,8 @@
 				
 				<item>le bloom                 <tag>out.action.light="4";</tag></item>
 				<item>le strip                 <tag>out.action.light="5";</tag></item>
+				
+				<item>les lumieres du salon 	<tag>out.action.light="6,7";</tag></item>
 			</one-of>
 	  </item>
 		
